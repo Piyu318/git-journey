@@ -1,0 +1,42 @@
+public class Time {
+    private int hours;
+    private int minutes;
+
+    // Method to set the time
+    public void setTime(int h, int m) {
+        this.hours = h;
+        this.minutes = m;
+    }
+
+    // Method to display the time
+    public void displayTime() {
+        System.out.println("Time: " + hours + ":" + (minutes < 10 ? "0" : "") + minutes);
+    }
+
+    // Method to add two Time objects and store result in the calling object
+    public void addTime(Time t1, Time t2) {
+        int totalMinutes = t1.minutes + t2.minutes;
+        int extraHours = totalMinutes / 60;
+        this.minutes = totalMinutes % 60;
+        this.hours = t1.hours + t2.hours + extraHours;
+    }
+
+    // Main method to demonstrate
+    public static void main(String[] args) {
+        Time time1 = new Time();
+        time1.setTime(2, 45);
+
+        Time time2 = new Time();
+        time2.setTime(1, 30);
+
+        Time result = new Time();
+        result.addTime(time1, time2);
+
+        System.out.print("Time 1: ");
+        time1.displayTime();
+        System.out.print("Time 2: ");
+        time2.displayTime();
+        System.out.print("Sum: ");
+        result.displayTime();
+    }
+}
