@@ -1,0 +1,54 @@
+public class Rectangle {
+    private double width = 1;
+    private double height = 1;
+
+    // No-argument constructor
+    public Rectangle() {
+    }
+
+    // Constructor with parameters
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    // Method to get area
+    public double getArea() {
+        return width * height;
+    }
+
+    // Method to get perimeter
+    public double getPerimeter() {
+        return 2 * (width + height);
+    }
+
+    // Main method to create objects, display details, and compare areas
+    public static void main(String[] args) {
+        // Create first Rectangle object
+        Rectangle rect1 = new Rectangle(4, 40);
+        System.out.println("Rectangle 1:");
+        System.out.println("Width: " + rect1.width);
+        System.out.println("Height: " + rect1.height);
+        System.out.println("Area: " + rect1.getArea());
+        System.out.println("Perimeter: " + rect1.getPerimeter());
+        System.out.println();
+
+        // Create second Rectangle object
+        Rectangle rect2 = new Rectangle(3.5, 35.9);
+        System.out.println("Rectangle 2:");
+        System.out.println("Width: " + rect2.width);
+        System.out.println("Height: " + rect2.height);
+        System.out.println("Area: " + rect2.getArea());
+        System.out.println("Perimeter: " + rect2.getPerimeter());
+        System.out.println();
+
+        // Compare areas
+        if (rect1.getArea() > rect2.getArea()) {
+            System.out.println("Rectangle 1 has a larger area.");
+        } else if (rect2.getArea() > rect1.getArea()) {
+            System.out.println("Rectangle 2 has a larger area.");
+        } else {
+            System.out.println("Both rectangles have the same area.");
+        }
+    }
+}
