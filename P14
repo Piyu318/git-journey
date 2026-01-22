@@ -1,0 +1,67 @@
+public class BankAccount {
+    private String accountId;
+    private String accountHolderName;
+    private double balance;
+
+    // Method to assign values (initialization)
+    public void assignValues(String accountId, String accountHolderName, double balance) {
+        this.accountId = accountId;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    // Method to display values
+    public void displayValues() {
+        System.out.println("Account ID: " + accountId);
+        System.out.println("Account Holder Name: " + accountHolderName);
+        System.out.println("Balance: " + balance);
+    }
+
+    // Search function: takes an array of BankAccount objects and an accountId, displays details if found
+    public static void search(BankAccount[] accounts, String accountId) {
+        for (BankAccount account : accounts) {
+            if (account.accountId != null && account.accountId.equals(accountId)) {
+                System.out.println("Account found:");
+                account.displayValues();
+                return;
+            }
+        }
+        System.out.println("Account with ID " + accountId + " not found.");
+    }
+
+    // Main method to demonstrate adding, displaying, and searching
+    public static void main(String[] args) {
+        // Create an array of 5 BankAccount objects
+        BankAccount[] accounts = new BankAccount[5];
+
+        // Initialize each account using assignValues
+        accounts[0] = new BankAccount();
+        accounts[0].assignValues("ACC001", "Alice Johnson", 1500.50);
+
+        accounts[1] = new BankAccount();
+        accounts[1].assignValues("ACC002", "Bob Smith", 2500.75);
+
+        accounts[2] = new BankAccount();
+        accounts[2].assignValues("ACC003", "Charlie Brown", 3200.00);
+
+        accounts[3] = new BankAccount();
+        accounts[3].assignValues("ACC004", "Diana Prince", 1800.25);
+
+        accounts[4] = new BankAccount();
+        accounts[4].assignValues("ACC005", "Eve Adams", 4100.90);
+
+        // Display all accounts
+        System.out.println("All Bank Accounts:");
+        for (BankAccount account : accounts) {
+            account.displayValues();
+            System.out.println("-------------------");
+        }
+
+        // Demonstrate searching
+        System.out.println("\nSearching for account ID 'ACC003':");
+        search(accounts, "ACC003");
+
+        System.out.println("\nSearching for account ID 'ACC999' (non-existent):");
+        search(accounts, "ACC999");
+    }
+}
