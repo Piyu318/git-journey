@@ -1,0 +1,38 @@
+public class LoanCalculator {
+    // Method for home loans: int principal, int time (months), float rate (annual %)
+    public static double calculateEMI(int principal, int time, float rate) {
+        double monthlyRate = rate / 12 / 100;
+        double emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, time)) / (Math.pow(1 + monthlyRate, time) - 1);
+        return emi;
+    }
+
+    // Method for vehicle loans: double principal, int time (months), double rate (annual %)
+    public static double calculateEMI(double principal, int time, double rate) {
+        double monthlyRate = rate / 12 / 100;
+        double emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, time)) / (Math.pow(1 + monthlyRate, time) - 1);
+        return emi;
+    }
+
+    // Method for short-term personal loans: int principal, int time (months), fixed rate 10%
+    public static double calculateEMI(int principal, int time) {
+        double rate = 10.0; // Fixed annual rate
+        double monthlyRate = rate / 12 / 100;
+        double emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, time)) / (Math.pow(1 + monthlyRate, time) - 1);
+        return emi;
+    }
+
+    // Main method to demonstrate all three overloaded methods
+    public static void main(String[] args) {
+        // Home loan example: principal 1,000,000, time 240 months, rate 8.5%
+        double homeEMI = calculateEMI(1000000, 240, 8.5f);
+        System.out.println("Home Loan EMI: " + String.format("%.2f", homeEMI));
+
+        // Vehicle loan example: principal 500,000, time 60 months, rate 9.5%
+        double vehicleEMI = calculateEMI(500000.0, 60, 9.5);
+        System.out.println("Vehicle Loan EMI: " + String.format("%.2f", vehicleEMI));
+
+        // Short-term personal loan example: principal 100,000, time 12 months, fixed 10%
+        double personalEMI = calculateEMI(100000, 12);
+        System.out.println("Short-term Personal Loan EMI: " + String.format("%.2f", personalEMI));
+    }
+}
