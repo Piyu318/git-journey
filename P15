@@ -1,0 +1,33 @@
+public class BillGenerator {
+    // Method for regular customers: no discount
+    public static double generateBill(int itemTotal) {
+        return itemTotal;
+    }
+
+    // Method for privileged customers: apply flat discount in rupees
+    public static double generateBill(int itemTotal, int discount) {
+        return itemTotal - discount;
+    }
+
+    // Method for festive offers: apply percentage discount
+    public static double generateBill(int itemTotal, double discountPercent) {
+        return itemTotal - (itemTotal * discountPercent / 100);
+    }
+
+    // Main method to demonstrate the billing system
+    public static void main(String[] args) {
+        int itemTotal = 1000; // Example item total
+
+        // Regular customer: no discount
+        double regularBill = generateBill(itemTotal);
+        System.out.println("Regular Customer Bill: " + regularBill);
+
+        // Privileged customer: flat discount of 100 rupees
+        double privilegedBill = generateBill(itemTotal, 100);
+        System.out.println("Privileged Customer Bill (after 100 rupees discount): " + privilegedBill);
+
+        // Festive offer: 10% discount
+        double festiveBill = generateBill(itemTotal, 10.0);
+        System.out.println("Festive Offer Bill (after 10% discount): " + festiveBill);
+    }
+}
