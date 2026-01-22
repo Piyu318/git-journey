@@ -1,0 +1,25 @@
+public class Point {
+    private double x;
+    private double y;
+
+    // Default constructor: initializes x and y to 5
+    public Point() {
+        this.x = 5;
+        this.y = 5;
+    }
+
+    // Parameterized constructor: initializes x and y with user-supplied values
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // Copy constructor: creates a new Point as a copy of an existing Point
+    public Point(Point other) {
+        this.x = other.x;
+        this.y = other.y;
+    }
+
+    // Display method: shows the point's coordinates
+    public void display() {
+        System.out.println("
