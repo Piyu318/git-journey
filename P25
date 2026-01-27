@@ -1,0 +1,22 @@
+class Employee {
+    String name = "Raj";
+    String dept = "IT";
+
+    void displayDetails() {
+        System.out.println(name + " - " + dept);
+    }
+}
+
+class Manager extends Employee {
+    void displayDetails() {
+        System.out.println(name + " - " + dept + " - Team Size: 10");
+    }
+
+    public static void main(String[] args) {
+        Employee e = new Employee();
+        Employee m = new Manager();
+
+        e.displayDetails();
+        m.displayDetails();
+    }
+}
