@@ -1,0 +1,22 @@
+abstract class Vehicle {
+    abstract String fuelType();
+    abstract int noOfWheels();
+}
+
+class Car extends Vehicle {
+    String fuelType() { return "Petrol"; }
+    int noOfWheels() { return 4; }
+}
+
+class Bike extends Vehicle {
+    String fuelType() { return "Petrol"; }
+    int noOfWheels() { return 2; }
+
+    public static void main(String[] args) {
+        Vehicle v1 = new Car();
+        Vehicle v2 = new Bike();
+
+        System.out.println(v1.fuelType() + " " + v1.noOfWheels());
+        System.out.println(v2.fuelType() + " " + v2.noOfWheels());
+    }
+}
