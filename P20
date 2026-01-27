@@ -1,0 +1,30 @@
+class College {
+    String collegeName;
+
+    College(String name) {
+        collegeName = name;
+    }
+
+    class Admission {
+        String studentName;
+        String course;
+
+        void accept(String s, String c) {
+            studentName = s;
+            course = c;
+        }
+
+        void display() {
+            System.out.println("College: " + collegeName);
+            System.out.println("Student Name: " + studentName);
+            System.out.println("Course: " + course);
+        }
+    }
+
+    public static void main(String[] args) {
+        College col = new College("SPB Patel Engineering College");
+        College.Admission ad = col.new Admission();
+        ad.accept("Rahul", "Computer Engineering");
+        ad.display();
+    }
+}
