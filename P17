@@ -1,0 +1,40 @@
+class University {
+
+    // Static data members
+    static int totalStudents;
+    static String universityName;
+
+    // Static block (executes once when class is loaded)
+    static {
+        universityName = "S.P.B. Patel Engineering College";
+        totalStudents = 0;
+        System.out.println("Static Block Executed");
+        System.out.println("University Name Initialized: " + universityName);
+    }
+
+    // Instance block (executes every time an object is created)
+    {
+        totalStudents++;
+        System.out.println("Instance Block Executed - Student Object Created");
+    }
+
+    // Constructor
+    University() {
+        System.out.println("Constructor Executed");
+    }
+
+    // Static method
+    static int getTotalStudents() {
+        return totalStudents;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("Main Method Started");
+
+        University u1 = new University();
+        University u2 = new University();
+
+        System.out.println("Total Students: " + getTotalStudents());
+    }
+}
