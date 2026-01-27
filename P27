@@ -1,0 +1,17 @@
+class Payment {
+    void processPayment(int amt) {
+        System.out.println("Processing payment...");
+    }
+}
+
+class CreditCardPayment extends Payment {
+    void processPayment(int amt) {
+        System.out.println("Payment of Rs. " + amt + " done Using Credit Card");
+    }
+}
+
+class UPIPayment extends Payment {
+    void processPayment(int amt) {
+        System.out.println("Payment of Rs. " + amt + " done using UPI");
+    }
+}
