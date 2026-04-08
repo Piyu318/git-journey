@@ -1,0 +1,33 @@
+public class DivisionDemo {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 34 - Exception Handling");
+        System.out.println();
+        
+        try {
+            if (args.length != 2) {
+                throw new ArrayIndexOutOfBoundsException("Please provide exactly 2 arguments: numerator denominator");
+            }
+            
+            int numerator = Integer.parseInt(args[0]);
+            int denominator = Integer.parseInt(args[1]);
+            
+            if (denominator == 0) {
+                throw new ArithmeticException("Denominator cannot be zero");
+            }
+            
+            double result = (double) numerator / denominator;
+            System.out.println("Result: " + numerator + " / " + denominator + " = " + result);
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format. Please enter valid integers.");
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
