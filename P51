@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class GenericSortDemo {
+    public static <T extends Comparable<T>> void sortList(List<T> list) {
+        Collections.sort(list);
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 52 - Generic Sort");
+        System.out.println();
+        
+        // Test with Integers
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.addAll(Arrays.asList(64, 34, 25, 12, 22, 11, 90));
+        
+        System.out.println("Numbers (Unsorted): " + numbers);
+        sortList(numbers);
+        System.out.println("Numbers (Sorted): " + numbers);
+        
+        // Test with Strings
+        ArrayList<String> names = new ArrayList<>();
+        names.addAll(Arrays.asList("Zebra", "Apple", "Banana", "Cherry"));
+        
+        System.out.println("\nNames (Unsorted): " + names);
+        sortList(names);
+        System.out.println("Names (Sorted): " + names);
+    }
+}
