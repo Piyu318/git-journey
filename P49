@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+
+class Box<T> {
+    private ArrayList<T> items;
+    
+    public Box() {
+        items = new ArrayList<>();
+    }
+    
+    public void addItem(T item) {
+        items.add(item);
+    }
+    
+    public void displayItems() {
+        System.out.println("Box contents:");
+        for (T item : items) {
+            System.out.println(item);
+        }
+    }
+}
+
+public class GenericBoxDemo {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 50 - Generic Box");
+        System.out.println();
+        
+        Box<String> nameBox = new Box<>();
+        nameBox.addItem("Alice");
+        nameBox.addItem("Bob");
+        nameBox.addItem("Charlie");
+        
+        Box<Integer> rollBox = new Box<>();
+        rollBox.addItem(101);
+        rollBox.addItem(102);
+        rollBox.addItem(103);
+        
+        System.out.println("=== Name Box ===");
+        nameBox.displayItems();
+        
+        System.out.println("\n=== Roll Number Box ===");
+        rollBox.displayItems();
+    }
+}
