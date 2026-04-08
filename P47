@@ -1,0 +1,29 @@
+import java.util.*;
+import java.util.Scanner;
+
+public class WordFrequency {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 48 - Word Frequency Counter");
+        System.out.println();
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine().toLowerCase();
+        scanner.close();
+        
+        String[] words = sentence.split("\\s+");
+        HashMap<String, Integer> frequency = new HashMap<>();
+        
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                frequency.put(word, frequency.getOrDefault(word, 0) + 1);
+            }
+        }
+        
+        System.out.println("\nWord Frequency:");
+        frequency.forEach((word, count) -> 
+            System.out.println(word + " -> " + count));
+    }
+}
