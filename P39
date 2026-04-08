@@ -1,0 +1,48 @@
+class NumberPrinter extends Thread {
+    private int start, end;
+    private Thread nextThread;
+    
+    public NumberPrinter(int start, int end, Thread nextThread) {
+        this.start = start;
+        this.end = end;
+        this.nextThread = nextThread;
+    }
+    
+    public void run() {
+        for (int i = start; i <= end; i++) {
+            System.out.println(currentThread().getName() + ": " + i);
+        }
+        System.out.println(currentThread().getName() + " completed");
+        
+        if (nextThread != null) {
+            nextThread.start();
+        }
+    }
+}
+
+public class SequentialThreadDemo {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 40 - Sequential Thread Execution");
+        System.out.println();
+        
+        Thread t1 = new NumberPrinter(1, 100, null);
+        Thread t2 = new NumberPrinter(101, 200, null);
+        Thread t3 = new NumberPrinter(201, 300, null);
+        
+        try {
+            t1.start();
+            t1.join(); // Wait for t1 to complete
+            
+            t2.start();
+            t2.join(); // Wait for t2 to complete
+            
+            t3.start();
+            t3.join(); // Wait for t3 to complete
+            
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted");
+        }
+    }
+}
