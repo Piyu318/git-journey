@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class StudentMarks {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 47 - ArrayList Operations");
+        System.out.println();
+        
+        ArrayList<Integer> marks = new ArrayList<>();
+        marks.addAll(Arrays.asList(85, 92, 78, 95, 88));
+        
+        System.out.println("All Marks: " + marks);
+        System.out.println("Highest Mark: " + Collections.max(marks));
+        System.out.println("Lowest Mark: " + Collections.min(marks));
+    }
+}
