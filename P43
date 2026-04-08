@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class StudentRecordDemo {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 44 - Student Records");
+        System.out.println();
+        
+        String filename = "students.txt";
+        
+        // Create sample data
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+            writer.println("101\tJohn Doe\t85.5");
+            writer.println("102\tJane Smith\t92.0");
+            writer.println("103\tMike Johnson\t78.5");
+            System.out.println("Created students.txt with sample data");
+        } catch (IOException e) {
+            System.out.println("Error creating file: " + e.getMessage());
+            return;
+        }
+        
+        // Read and display records
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            System.out.println("Student Records:");
+            System.out.println("RollNo\tName\t\tMarks");
+            System.out.println("------\t-----\t\t-----");
+            
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\t");
+                if (parts.length >= 3) {
+                    System.out.printf("%s\t%s\t\t%.1f%n", parts[0], parts[1], Double.parseDouble(parts[2]));
+                }
+            }
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: students.txt not found.");
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error parsing marks data.");
+        }
+    }
+}
