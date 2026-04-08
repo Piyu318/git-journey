@@ -1,0 +1,63 @@
+import java.io.*;
+import java.nio.file.*;
+import java.util.Date;
+
+public class FileOperations {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 46 - File Operations CLI");
+        System.out.println();
+        
+        if (args.length < 2) {
+            System.out.println("Usage:");
+            System.out.println("  copy <source> <dest>");
+            System.out.println("  delete <filename>");
+            System.out.println("  rename <oldname> <newname>");
+            return;
+        }
+        
+        String command = args[0];
+        
+        try {
+            switch (command.toLowerCase()) {
+                case "copy":
+                    if (args.length == 3) {
+                        Files.copy(Paths.get(args[1]), Paths.get(args[2]), StandardCopyOption.REPLACE_EXISTING);
+                        displayFileInfo(args[2]);
+                    }
+                    break;
+                    
+                case "delete":
+                    if (args.length == 2) {
+                        Files.deleteIfExists(Paths.get(args[1]));
+                        System.out.println("File '" + args[1] + "' deleted successfully.");
+                    }
+                    break;
+                    
+                case "rename":
+                    if (args.length == 3) {
+                        Files.move(Paths.get(args[1]), Paths.get(args[2]), StandardCopyOption.REPLACE_EXISTING);
+                        displayFileInfo(args[2]);
+                    }
+                    break;
+                    
+                default:
+                    System.out.println("Unknown command: " + command);
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
+    private static void displayFileInfo(String filename) throws IOException {
+        File file = new File(filename);
+        System.out.println("\n=== File Properties ===");
+        System.out.println("Name: " + file.getName());
+        System.out.println("Absolute Path: " + file.getAbsolutePath());
+        System.out.println("Size: " + file.length() + " bytes");
+        System.out.println("Readable: " + file.canRead());
+        System.out.println("Writable: " + file.canWrite());
+        System.out.println("Last Modified: " + new Date(file.lastModified()));
+    }
+}
