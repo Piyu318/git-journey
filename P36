@@ -1,0 +1,68 @@
+NotSufficientFundException.java
+class NotSufficientFundException extends Exception {
+    public NotSufficientFundException(String message) {
+        super(message);
+    }
+}
+BankAccount.java
+class BankAccount {
+    private double balance;
+    
+    public BankAccount() {
+        this.balance = 1000.00;
+    }
+    
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.printf("Deposited: ₹%.2f, New Balance: ₹%.2f%n", amount, balance);
+        } else {
+            System.out.println("Deposit amount must be positive");
+        }
+    }
+    
+    public void withdraw(double amount) throws NotSufficientFundException {
+        if (amount > 0) {
+            if (amount <= balance) {
+                balance -= amount;
+                System.out.printf("Withdrawn: ₹%.2f, New Balance: ₹%.2f%n", amount, balance);
+            } else {
+                throw new NotSufficientFundException("Not Sufficient Fund");
+            }
+        } else {
+            throw new NotSufficientFundException("Withdrawal amount must be positive");
+        }
+    }
+    
+    public double getBalance() {
+        return balance;
+    }
+}
+BankingDemo.java
+public class BankingDemo {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 37 - Banking Application");
+        System.out.println();
+        
+        BankAccount account = new BankAccount();
+        
+        try {
+            System.out.println("Initial Balance: ₹" + account.getBalance());
+            System.out.println();
+            
+            account.deposit(1000.00);
+            System.out.println();
+            
+            account.withdraw(400.00);
+            account.withdraw(300.00);
+            account.withdraw(500.00); // This will throw exception
+            
+        } catch (NotSufficientFundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        System.out.println("Final Balance: ₹" + account.getBalance());
+    }
+}
