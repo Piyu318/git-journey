@@ -1,0 +1,45 @@
+apack/A.java 
+package apack;
+
+public class A {
+    public int pubVar;
+    protected int protVar;
+    private int privVar;
+    
+    public A(int pubVar, int protVar, int privVar) {
+        this.pubVar = pubVar;
+        this.protVar = protVar;
+        this.privVar = privVar;
+    }
+}
+bpack/B.java
+package bpack;
+import apack.A;
+
+public class B extends A {
+    public B(int pubVar, int protVar, int privVar) {
+        super(pubVar, protVar, privVar);
+    }
+    
+    public void display() {
+        System.out.println("Class B (extends A) - Accessing variables:");
+        System.out.println("pubVar: " + pubVar);      // Accessible (public)
+        System.out.println("protVar: " + protVar);    // Accessible (protected, inheritance)
+        // System.out.println("privVar: " + privVar); // ERROR: private not accessible
+        System.out.println("---");
+    }
+}
+cpack/C.java
+package cpack;
+import apack.A;
+
+public class C {
+    public void display() {
+        A obj = new A(10, 20, 30);
+        System.out.println("Class C - Accessing A object variables:");
+        System.out.println("pubVar: " + obj.pubVar);  // Accessible (public)
+        // System.out.println("protVar: " + obj.protVar); // ERROR: protected not accessible
+        // System.out.println("privVar: " + obj.privVar); // ERROR: private not accessible
+        System.out.println("---");
+    }
+}
