@@ -1,0 +1,44 @@
+BookNotAvailableException.java
+class BookNotAvailableException extends Exception {
+    public BookNotAvailableException(String message) {
+        super(message);
+    }
+}
+Library.java
+class Library {
+    private int availableBooks;
+    
+    public Library(int availableBooks) {
+        this.availableBooks = availableBooks;
+    }
+    
+    public void issueBook(int count) throws BookNotAvailableException {
+        if (count <= availableBooks) {
+            availableBooks -= count;
+            System.out.println("Book issued successfully. " + count + " books issued.");
+            System.out.println("Books remaining: " + availableBooks);
+        } else {
+            throw new BookNotAvailableException("Requested books not available");
+        }
+    }
+}
+LibraryDemo.java
+public class LibraryDemo {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 38 - Library Management");
+        System.out.println();
+        
+        Library library = new Library(3);
+        
+        try {
+            System.out.println("Initial books available: " + library);
+            library.issueBook(2); // Valid
+            System.out.println();
+            library.issueBook(2); // Invalid - throws exception
+        } catch (BookNotAvailableException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
