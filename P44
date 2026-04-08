@@ -1,0 +1,48 @@
+import java.io.*;
+
+public class AdvancedFileStats {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 45 - Advanced File Statistics");
+        System.out.println();
+        
+        String filename = "data.txt";
+        
+        // Create sample data.txt
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+            writer.println("Hello World");
+            writer.println("This is a sample text file");
+            writer.println("Java File I/O operations");
+        } catch (IOException e) {
+            System.out.println("Error creating data.txt");
+            return;
+        }
+        
+        int lineCount = 0, wordCount = 0, charCount = 0;
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lineCount++;
+                wordCount += line.trim().split("\\s+").length;
+                
+                for (char c : line.toCharArray()) {
+                    if (!Character.isWhitespace(c)) {
+                        charCount++;
+                    }
+                }
+            }
+            
+            System.out.println("File Statistics for: " + filename);
+            System.out.println("Total Lines: " + lineCount);
+            System.out.println("Total Words: " + wordCount);
+            System.out.println("Total Characters (excluding spaces): " + charCount);
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: data.txt not found.");
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+}
