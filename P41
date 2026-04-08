@@ -1,0 +1,56 @@
+class SumThread extends Thread {
+    private int start;
+    private int end;
+    private long partialSum;
+    
+    public SumThread(int start, int end, String name) {
+        super(name);
+        this.start = start;
+        this.end = end;
+        this.partialSum = 0;
+    }
+    
+    @Override
+    public void run() {
+        System.out.println(getName() + " started calculating sum from " + start + " to " + end);
+        for (int i = start; i <= end; i++) {
+            partialSum += i;
+        }
+        System.out.println(getName() + " completed. Partial sum: " + partialSum);
+    }
+    
+    public long getPartialSum() {
+        return partialSum;
+    }
+}
+
+public class SumCalculator {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 42 - Parallel Sum Calculation");
+        System.out.println();
+        
+        SumThread thread1 = new SumThread(1, 1000, "Thread-1");
+        SumThread thread2 = new SumThread(1001, 2000, "Thread-2");
+        
+        // Start both threads
+        thread1.start();
+        thread2.start();
+        
+        try {
+            // Wait for both threads to complete
+            thread1.join();
+            thread2.join();
+            
+            long totalSum = thread1.getPartialSum() + thread2.getPartialSum();
+            System.out.println("\n=== FINAL RESULT ===");
+            System.out.println("Thread-1 sum (1-1000): " + thread1.getPartialSum());
+            System.out.println("Thread-2 sum (1001-2000): " + thread2.getPartialSum());
+            System.out.println("Total sum (1-2000): " + totalSum);
+            
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted: " + e.getMessage());
+        }
+    }
+}
