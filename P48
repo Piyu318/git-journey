@@ -1,0 +1,38 @@
+import java.util.LinkedList;
+
+public class MusicPlaylist {
+    public static void main(String[] args) {
+        System.out.println("S.P.B. Patel Engineering College");
+        System.out.println("Object Oriented Programming [BE04000231]");
+        System.out.println("Practical 49 - Music Playlist");
+        System.out.println();
+        
+        LinkedList<String> playlist = new LinkedList<>();
+        playlist.add("Song 1 - Artist A");
+        playlist.add("Song 2 - Artist B");
+        playlist.add("Song 3 - Artist C");
+        playlist.add("Song 4 - Artist D");
+        
+        System.out.println("Initial Playlist:");
+        displayPlaylist(playlist);
+        
+        // Play first song
+        String firstSong = playlist.removeFirst();
+        System.out.println("\nPlaying: " + firstSong);
+        System.out.println("Updated Playlist:");
+        displayPlaylist(playlist);
+        
+        // Skip last song
+        String lastSong = playlist.removeLast();
+        System.out.println("\nSkipped: " + lastSong);
+        System.out.println("Final Playlist:");
+        displayPlaylist(playlist);
+    }
+    
+    static void displayPlaylist(LinkedList<String> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i+1) + ". " + list.get(i));
+        }
+        System.out.println();
+    }
+}
